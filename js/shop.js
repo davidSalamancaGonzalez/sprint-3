@@ -81,7 +81,7 @@ function buy(id) {
 
     for (i = 0; i <= products.lenght; i++) {
 
-        if (i == (indexProduct)) {
+        if (i == indexProduct) {
             let indexProduct = indexProduct
         }
     }
@@ -94,7 +94,10 @@ function buy(id) {
 
 // Exercise 2
 function cleanCart() {
+    
+cartList.length = 0;
 
+console.log(cartList)
 }
 
 // Exercise 3
