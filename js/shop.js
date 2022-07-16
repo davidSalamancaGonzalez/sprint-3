@@ -77,19 +77,16 @@ function buy(id) {
 
     let indexProduct = Number(id - 1);
 
-    let i;
-
-    for (i = 0; i <= products.lenght; i++) {
+    for (let i = 0; i <= products.lenght; i++) {
 
         if (i == indexProduct) {
-            let indexProduct = indexProduct;
+            indexProduct = i;
         }
     }
 
     // 2. Add found product to the cartList array
-    cartList.push(products[indexProduct])
 
-    console.log(cartList);
+    cartList.push(products[indexProduct])
 }
 
 // Exercise 2
@@ -97,21 +94,24 @@ function cleanCart() {
 
     cartList.length = 0;
 
-    console.log(cartList)
+    console.log(cartList);
+
 }
 
 // Exercise 3
 function calculateTotal() {
 
     let finalPrice = 0;
-    let i;
 
-    for (i = 0; i <= cartList.length; i++) {
+    for (let item of cartList) {
 
-        finalPrice += cartList[i].price;
+        productPrice = item.price;
+
+        finalPrice += productPrice;
     }
-
     console.log(finalPrice);
+
+    return finalPrice
 }
 
 
@@ -119,38 +119,64 @@ function calculateTotal() {
 // Exercise 4
 function generateCart() {
     // Using the "cartlist" array that contains all the items in the shopping cart, 
-
-
     // generate the "cart" array that does not contain repeated items, instead each item of this array "cart" shows the quantity of product.
+
+    cart = [];
+
+    for (let i = 0; i < cartList.length; i++) {
+   
+        let found = false;
+        
+        for (let j = 0; j < cart.length; j++) {
+            
+
+            if (cart[j].id == cartList[i].id) {
+                found = true;
+                cart[j].quantity += 1;
+                cart[j].subtotal = cart[j].quantity * cart[j].price;
+
+            }
+        }
+        
+        if (found == false) {
+            cartList[i].quantity = 1;
+            cartList[i].subtotal = cartList[i].quantity * cartList[i].price;
+            cart.push(cartList[i])
+        }
+
+    }
+
+    console.log("new", cart);    
+
 }
 
-// Exercise 5
-function applyPromotionsCart() {
-    // Apply promotions to each item in the array "cart"
-}
+    // Exercise 5
+    function applyPromotionsCart() {
+        // Apply promotions to each item in the array "cart"
+    }
 
-// Exercise 6
-function printCart() {
-    // Fill the shopping cart modal manipulating the shopping cart dom
-}
+    // Exercise 6
+    function printCart() {
+        // Fill the shopping cart modal manipulating the shopping cart dom
+    }
 
 
-// ** Nivell II **
+    // ** Nivell II **
 
-// Exercise 7
-function addToCart(id) {
-    // Refactor previous code in order to simplify it 
-    // 1. Loop for to the array products to get the item to add to cart
-    // 2. Add found product to the cart array or update its quantity in case it has been added previously.
-}
+    // Exercise 7
+    function addToCart(id) {
+        // Refactor previous code in order to simplify it 
+        // 1. Loop for to the array products to get the item to add to cart
+        // 2. Add found product to the cart array or update its quantity in case it has been added previously.
+    }
 
-// Exercise 8
-function removeFromCart(id) {
-    // 1. Loop for to the array products to get the item to add to cart
-    // 2. Add found product to the cartList array
-}
+    // Exercise 8
+    function removeFromCart(id) {
+        // 1. Loop for to the array products to get the item to add to cart
+        // 2. Add found product to the cartList array
+    }
 
-function open_modal() {
-    console.log("Open Modal");
-    printCart();
-}
+    function open_modal() {
+        console.log("Open Modal");
+        printCart();
+    }
