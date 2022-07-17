@@ -124,11 +124,11 @@ function generateCart() {
     cart = [];
 
     for (let i = 0; i < cartList.length; i++) {
-   
+
         let found = false;
-        
+
         for (let j = 0; j < cart.length; j++) {
-            
+
 
             if (cart[j].id == cartList[i].id) {
                 found = true;
@@ -137,7 +137,7 @@ function generateCart() {
 
             }
         }
-        
+
         if (found == false) {
             cartList[i].quantity = 1;
             cartList[i].subtotal = cartList[i].quantity * cartList[i].price;
@@ -146,37 +146,52 @@ function generateCart() {
 
     }
 
-    console.log("new", cart);    
+    console.log("new", cart);
+    
+    return cart;
+}
+
+// Exercise 5
+function applyPromotionsCart() {
+    // Apply promotions to each item in the array "cart"
+
+for (let i = 0; i < cart.length ; i++){
+
+    if (cart[i].id == 1 && cart[i].quantity >= 3){
+        cart[i].price = 10;
+        cart[i].subtotalWithDiscount = cart[i].price * cart[i].quantity;
+    } else if (cart[i].id == 3 && cart[i].quantity >= 10) {
+        cart[i].price = (cart[i].price * 2) / 3;
+        cart[i].subtotalWithDiscount = cart[i].price * cart[i].quantity;
+    }
+
+}
+console.log(cart);
 
 }
 
-    // Exercise 5
-    function applyPromotionsCart() {
-        // Apply promotions to each item in the array "cart"
-    }
-
-    // Exercise 6
-    function printCart() {
-        // Fill the shopping cart modal manipulating the shopping cart dom
-    }
+// Exercise 6
+function printCart() {
+    // Fill the shopping cart modal manipulating the shopping cart dom
+}
 
 
-    // ** Nivell II **
+// ** Nivell II **
 
-    // Exercise 7
-    function addToCart(id) {
-        // Refactor previous code in order to simplify it 
-        // 1. Loop for to the array products to get the item to add to cart
-        // 2. Add found product to the cart array or update its quantity in case it has been added previously.
-    }
+// Exercise 7
+function addToCart(id) {
+    // Refactor previous code in order to simplify it 
+    // 1. Loop for to the array products to get the item to add to cart
+    // 2. Add found product to the cart array or update its quantity in case it has been added previously.
+}
 
-    // Exercise 8
-    function removeFromCart(id) {
-        // 1. Loop for to the array products to get the item to add to cart
-        // 2. Add found product to the cartList array
-    }
+// Exercise 8
+function removeFromCart(id) {
+    // 1. Loop for to the array products to get the item to add to cart
+    // 2. Add found product to the cartList array
+}
 
-    function open_modal() {
-        console.log("Open Modal");
-        printCart();
-    }
+function open_modal() {
+    console.log("Open Modal");
+    printCart();
+}
