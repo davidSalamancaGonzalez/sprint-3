@@ -141,13 +141,15 @@ function generateCart() {
         if (found == false) {
             cartList[i].quantity = 1;
             cartList[i].subtotal = cartList[i].quantity * cartList[i].price;
+            cartList[i].subtotalWithDiscount = "";
+
             cart.push(cartList[i])
         }
 
     }
 
     console.log("new", cart);
-    
+
     return cart;
 }
 
@@ -155,24 +157,55 @@ function generateCart() {
 function applyPromotionsCart() {
     // Apply promotions to each item in the array "cart"
 
-for (let i = 0; i < cart.length ; i++){
+    for (let i = 0; i < cart.length; i++) {
 
-    if (cart[i].id == 1 && cart[i].quantity >= 3){
-        cart[i].price = 10;
-        cart[i].subtotalWithDiscount = cart[i].price * cart[i].quantity;
-    } else if (cart[i].id == 3 && cart[i].quantity >= 10) {
-        cart[i].price = (cart[i].price * 2) / 3;
-        cart[i].subtotalWithDiscount = cart[i].price * cart[i].quantity;
+        if (cart[i].id == 1 && cart[i].quantity >= 3) {
+            cart[i].price = 10;
+            cart[i].subtotalWithDiscount = cart[i].price * cart[i].quantity;
+        } else if (cart[i].id == 3 && cart[i].quantity >= 10) {
+            cart[i].price = (cart[i].price * 2) / 3;
+            cart[i].subtotalWithDiscount = cart[i].price * cart[i].quantity;
+        }
+
     }
-
-}
-console.log(cart);
+    console.log(cart);
 
 }
 
 // Exercise 6
 function printCart() {
     // Fill the shopping cart modal manipulating the shopping cart dom
+    generateCart()
+    applyPromotionsCart()
+
+    let finalPriceCart = 0;
+
+
+    // Iteramos por array cart para "pintar" en el carrito 
+
+    for (let product of cart) {
+
+        document.getElementById("cart_list").innerHTML += `<tr> <th scope= "row"> ${product.name}</th>
+    <td> ${product.price} </td>
+    <td> ${product.quantity} </td> 
+    <td> ${product.subtotal} </td>
+    <td> ${product.subtotalWithDiscount} </td>`
+    }
+
+    //  Calcular total 
+    for (let cartPrice of cart) {
+
+        if (cartPrice.subtotalWithDiscount == "") {
+            finalPriceCart += cartPrice.subtotal
+        } else {
+            finalPriceCart += cartPrice.subtotalWithDiscount
+        }
+    }
+
+    document.getElementById("total_price").innerHTML = finalPriceCart;
+
+
+
 }
 
 
