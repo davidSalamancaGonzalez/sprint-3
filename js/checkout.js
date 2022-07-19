@@ -1,6 +1,5 @@
 // Exercise 6
 function validate() {
-	var error = 0;
 	// Get the input fields
 	var fName = document.getElementById("fName");
 	var fEmail = document.getElementById("fEmail");
@@ -9,59 +8,67 @@ function validate() {
 	var fPassword = document.getElementById("fPassword");
 	var fPhone = document.getElementById("fPhone");
 
-	// Get the error elements
-	var errorName = document.getElementById("errorName");
-	var errorEmail = document.getElementById("errorEmail");
-	var errorAddress = document.getElementById("errorAddress");
-	var errorLastN = document.getElementById("errorLastN");
-	var errorPassword = document.getElementById("errorPassword");
-	var errorPhone = document.getElementById("errorPhone");
+
+	// Validation letters & numbers 
+
+	var errorNameNumbers = containsNumber(fName.value);
+	var errorLastNameNumbers = containsNumber(fLastN.value);
+	var errorPassword = containsNumber(fPassword.value);
 
 	// Validate fields entered by the user: name, phone, password, and email
-	if (fName.value == "") {
-		error++;
+
+	if (fName.value == "" || fName.value.length < 3 || errorNameNumbers == true) {
+		document.getElementById("fName").className += " is-invalid";
+
+	} else {
+		document.getElementById('fName').classList.remove('is-invalid');
+		document.getElementById("fName").className += " is-valid";
 	}
 
-	if (fEmail.value == "") {
-		error++;
+	if (fEmail.value == "" || fEmail.value.length < 3) {
+		document.getElementById("fEmail").className += " is-invalid";
+
+	} else {
+		document.getElementById('fEmail').classList.remove('is-invalid');
+		document.getElementById("fEmail").className += " is-valid";;
 	}
 
-	if (fAddress.value == "") {
-		error++;
+	if (fAddress.value == "" || fAddress.value.length < 3 ) {
+		document.getElementById("fAddress").className += " is-invalid";
+
+	} else {
+		document.getElementById('fAddress').classList.remove('is-invalid');
+		document.getElementById("fAddress").className += " is-valid";
+
 	}
 
-	if (fLastN.value == "") {
-		error++;
+	if (fLastN.value == "" || fLastN.value.length < 3 || errorLastNameNumbers == true) {
+		document.getElementById("fLastN").className += " is-invalid";
+	} else {
+		document.getElementById('fLastN').classList.remove('is-invalid');
+		document.getElementById("fLastN").className += " is-valid";
 	}
 
-	if (fPassword.value == "") {
-		error++;
+
+	if (fPassword.value == "" || fPassword.value.length < 3 || errorPassword == false) {
+		document.getElementById("fPassword").className += " is-invalid";
+	} else {
+		document.getElementById('fPassword').classList.remove('is-invalid');
+		document.getElementById("fPassword").className += " is-valid";
 	}
 
-	if (fPhone.value == "" || fPhone.length < 9) {
-		error++;
+	if (fPhone.value == "" || fPhone.value.length < 9) {
+		document.getElementById("fPhone").className += " is-invalid ";
+
+	} else {
+		document.getElementById('fPhone').classList.remove('is-invalid');
+		document.getElementById("fPhone").className += " is-valid "
 	}
 
-	// if (error > 0) {
-	// 	alert("Error");
-	// } else {
-	// 	alert("OK");
-	// }
 
 }
 
-(function () {
-	'use strict'
-	const forms = document.querySelectorAll('.requires-validation')
-	Array.from(forms)
-		.forEach(function (form) {
-			form.addEventListener('submit', function (event) {
-				if (!form.checkValidity()) {
-					event.preventDefault()
-					event.stopPropagation()
-				}
+function containsNumber(n) {
+	return /[0-9]/.test(n);
+}
 
-				form.classList.add('was-validated')
-			}, false)
-		})
-})()
