@@ -72,22 +72,25 @@ var cart = [];
 var total = 0;
 
 // Exercise 1
-function buy(id) {
-    // 1. Loop for to the array products to get the item to add to cart
 
-    let indexProduct = Number(id - 1);
+// Hidden ex-8
 
-    for (let i = 0; i <= products.lenght; i++) {
+// function buy(id) {
+//     // 1. Loop for to the array products to get the item to add to cart
 
-        if (i == indexProduct) {
-            indexProduct = i;
-        }
-    }
+//     let indexProduct = Number(id - 1);
 
-    // 2. Add found product to the cartList array
+//     for (let i = 0; i <= products.lenght; i++) {
 
-    cartList.push(products[indexProduct])
-}
+//         if (i == indexProduct) {
+//             indexProduct = i;
+//         }
+//     }
+
+//     // 2. Add found product to the cartList array
+
+//     cartList.push(products[indexProduct])
+// }
 
 // Exercise 2
 function cleanCart() {
@@ -117,41 +120,41 @@ function calculateTotal() {
 
 
 // Exercise 4
-function generateCart() {
-    // Using the "cartlist" array that contains all the items in the shopping cart, 
-    // generate the "cart" array that does not contain repeated items, instead each item of this array "cart" shows the quantity of product.
+// Hidden ex-8
 
-    cart = [];
+// function generateCart() {
+// Using the "cartlist" array that contains all the items in the shopping cart, 
+// generate the "cart" array that does not contain repeated items, instead each item of this array "cart" shows the quantity of product.
 
-    for (let i = 0; i < cartList.length; i++) {
+//     cart = [];
 
-        let found = false;
+//     for (let i = 0; i < cartList.length; i++) {
 
-        for (let j = 0; j < cart.length; j++) {
+//         let found = false;
+
+//         for (let j = 0; j < cart.length; j++) {
 
 
-            if (cart[j].id == cartList[i].id) {
-                found = true;
-                cart[j].quantity += 1;
-                cart[j].subtotal = cart[j].quantity * cart[j].price;
+//             if (cart[j].id == cartList[i].id) {
+//                 found = true;
+//                 cart[j].quantity += 1;
+//                 cart[j].subtotal = cart[j].quantity * cart[j].price;
 
-            }
-        }
+//             }
+//         }
 
-        if (found == false) {
-            cartList[i].quantity = 1;
-            cartList[i].subtotal = cartList[i].quantity * cartList[i].price;
-            cartList[i].subtotalWithDiscount = "";
+//         if (found == false) {
+//             cartList[i].quantity = 1;
+//             cartList[i].subtotal = cartList[i].quantity * cartList[i].price;
+//             cartList[i].subtotalWithDiscount = "";
 
-            cart.push(cartList[i])
-        }
+//             cart.push(cartList[i])
+//         }
 
-    }
+//     }
 
-    console.log("new", cart);
-
-    return cart;
-}
+//     return cart;
+// }
 
 // Exercise 5
 function applyPromotionsCart() {
@@ -175,11 +178,8 @@ function applyPromotionsCart() {
 // Exercise 6
 function printCart() {
     // Fill the shopping cart modal manipulating the shopping cart dom
-    generateCart()
-    applyPromotionsCart()
 
     let finalPriceCart = 0;
-
 
     // Iteramos por array cart para "pintar" en el carrito 
 
@@ -215,7 +215,31 @@ function printCart() {
 function addToCart(id) {
     // Refactor previous code in order to simplify it 
     // 1. Loop for to the array products to get the item to add to cart
+
+    let indexProduct = Number(id);
+    let addCartProduct
+
+    for (let product of products) {
+        if (indexProduct == product.id) {
+            addCartProduct = product;
+        }
+    }
+
     // 2. Add found product to the cart array or update its quantity in case it has been added previously.
+
+    if (addCartProduct.quantity == undefined) {
+        addCartProduct.quantity = 1;
+        addCartProduct.subtotal = addCartProduct.quantity * addCartProduct.price;
+        addCartProduct.subtotalWithDiscount = "";
+        cart.push(addCartProduct)
+    } else {
+        addCartProduct.quantity += 1;
+        addCartProduct.subtotal = addCartProduct.quantity * addCartProduct.price;
+    }
+
+    applyPromotionsCart()
+    return cart
+
 }
 
 // Exercise 8
