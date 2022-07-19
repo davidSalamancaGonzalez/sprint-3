@@ -95,10 +95,13 @@ var total = 0;
 // Exercise 2
 function cleanCart() {
 
+    // old code
     cartList.length = 0;
-
     console.log(cartList);
 
+    // new code to update printCart at dom
+    cart = [];
+    console.log(cart);
 }
 
 // Exercise 3
@@ -120,7 +123,7 @@ function calculateTotal() {
 
 
 // Exercise 4
-// Hidden ex-8
+
 
 // function generateCart() {
 // Using the "cartlist" array that contains all the items in the shopping cart, 
@@ -171,17 +174,22 @@ function applyPromotionsCart() {
         }
 
     }
-    console.log(cart);
+    console.log("promotionApply", cart);
 
 }
 
 // Exercise 6
 function printCart() {
+
+    //Promotions first
+    
+    applyPromotionsCart()
+    
     // Fill the shopping cart modal manipulating the shopping cart dom
 
-    let finalPriceCart = 0;
+    document.getElementById("cart_list").innerHTML = "";
 
-    // Iteramos por array cart para "pintar" en el carrito 
+    let finalPriceCart = 0;
 
     for (let product of cart) {
 
@@ -211,7 +219,7 @@ function printCart() {
 
 // ** Nivell II **
 
-// Exercise 7
+// Exercise 8
 function addToCart(id) {
     // Refactor previous code in order to simplify it 
     // 1. Loop for to the array products to get the item to add to cart
@@ -227,7 +235,7 @@ function addToCart(id) {
 
     // 2. Add found product to the cart array or update its quantity in case it has been added previously.
 
-    if (addCartProduct.quantity == undefined) {
+    if (addCartProduct.quantity == undefined || addCartProduct.quantity == 0 || addCartProduct.quantity == "") {
         addCartProduct.quantity = 1;
         addCartProduct.subtotal = addCartProduct.quantity * addCartProduct.price;
         addCartProduct.subtotalWithDiscount = "";
@@ -237,7 +245,7 @@ function addToCart(id) {
         addCartProduct.subtotal = addCartProduct.quantity * addCartProduct.price;
     }
 
-    applyPromotionsCart()
+    console.log("addtocart final", cart);
     return cart
 
 }
