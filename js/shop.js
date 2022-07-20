@@ -101,17 +101,17 @@ function cleanCart() {
 
     // new code to update printCart at dom
 
-    //REPASAR ESTO -> el primer producto añadido al cesto, cuando se elimina no se puede volver a meter, los demás si.
-    
+
     cart.splice(0, cart.length)
 
     for (let product of products) {
         product.quantity = undefined;
     }
-    
-    console.log(cart)
+   
     
     printCart()
+    
+    document.getElementById("count_product").innerHTML = Number(cart.length);
 }
 
 // Exercise 3
@@ -172,30 +172,31 @@ function calculateTotal() {
 // Exercise 5
 function applyPromotionsCart() {
     // Apply promotions to each item in the array "cart"
-if ( cart.length > 0) {
-    
-    for (let i = 0; i < cart.length; i++) {
+    if (cart.length > 0) {
 
-        if (cart[i].id == 1 && cart[i].quantity >= 3) {
-            cart[i].price = 10;
-            cart[i].subtotalWithDiscount = cart[i].price * cart[i].quantity;
-        } else if (cart[i].id == 3 && cart[i].quantity >= 10) {
-            cart[i].price = (cart[i].price * 2) / 3;
-            cart[i].price = cart[i].price.toFixed(2)
-            cart[i].subtotalWithDiscount = cart[i].price * cart[i].quantity;
-            cart[i].subtotalWithDiscount = cart[i].subtotalWithDiscount.toFixed(2)
+        for (let i = 0; i < cart.length; i++) {
+
+            if (cart[i].id == 1 && cart[i].quantity >= 3) {
+                cart[i].price = 10;
+                cart[i].subtotalWithDiscount = cart[i].price * cart[i].quantity;
+            } else if (cart[i].id == 3 && cart[i].quantity >= 10) {
+                cart[i].price = (cart[i].price * 2) / 3;
+                cart[i].price = cart[i].price.toFixed(2)
+                cart[i].subtotalWithDiscount = cart[i].price * cart[i].quantity;
+                cart[i].subtotalWithDiscount = cart[i].subtotalWithDiscount.toFixed(2)
+            }
+
         }
-
-    }}
+    }
 }
 
 // Exercise 6
 function printCart() {
 
     //Promotions first
-    
+
     applyPromotionsCart()
-    
+
     // Fill the shopping cart modal manipulating the shopping cart dom
 
     document.getElementById("cart_list").innerHTML = "";
@@ -247,21 +248,23 @@ function addToCart(id) {
     // 2. Add found product to the cart array or update its quantity in case it has been added previously.
 
 
-if (addCartProduct.quantity == undefined) {
-    addCartProduct.quantity = 1;
-    addCartProduct.subtotal = addCartProduct.quantity * addCartProduct.price;
-    addCartProduct.subtotalWithDiscount = "";
-    cart.push(addCartProduct)
-    console.log("pasa");
-} else {
-    addCartProduct.quantity += 1;
-    addCartProduct.subtotal = addCartProduct.quantity * addCartProduct.price;
-    console.log("no pasa");
-    
-}
+    if (addCartProduct.quantity == undefined) {
+        addCartProduct.quantity = 1;
+        addCartProduct.subtotal = addCartProduct.quantity * addCartProduct.price;
+        addCartProduct.subtotalWithDiscount = "";
+        cart.push(addCartProduct)
+        console.log("pasa");
+    } else {
+        addCartProduct.quantity += 1;
+        addCartProduct.subtotal = addCartProduct.quantity * addCartProduct.price;
+        console.log("no pasa");
+
+    }
 
 
-   
+    document.getElementById("count_product").innerHTML = Number(cart.length);
+
+
     // return cart
 
 }
