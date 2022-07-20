@@ -101,16 +101,14 @@ function cleanCart() {
 
     // new code to update printCart at dom
 
-
     cart.splice(0, cart.length)
 
     for (let product of products) {
         product.quantity = undefined;
     }
-   
-    
+
     printCart()
-    
+
     document.getElementById("count_product").innerHTML = Number(cart.length);
 }
 
@@ -171,7 +169,9 @@ function calculateTotal() {
 
 // Exercise 5
 function applyPromotionsCart() {
+
     // Apply promotions to each item in the array "cart"
+
     if (cart.length > 0) {
 
         for (let i = 0; i < cart.length; i++) {
@@ -179,11 +179,20 @@ function applyPromotionsCart() {
             if (cart[i].id == 1 && cart[i].quantity >= 3) {
                 cart[i].price = 10;
                 cart[i].subtotalWithDiscount = cart[i].price * cart[i].quantity;
+            } else if (cart[i].id == 1 && cart[i].quantity <= 2) {
+                cart[i].price = 10.5;
+                cart[i].subtotal =  cart[i].price * cart[i].quantity;
+
+                cart[i].subtotalWithDiscount = "";
             } else if (cart[i].id == 3 && cart[i].quantity >= 10) {
-                cart[i].price = (cart[i].price * 2) / 3;
+                let price = (5 * 2) / 3;
+                cart[i].price = price;
                 cart[i].price = cart[i].price.toFixed(2)
                 cart[i].subtotalWithDiscount = cart[i].price * cart[i].quantity;
                 cart[i].subtotalWithDiscount = cart[i].subtotalWithDiscount.toFixed(2)
+            } else if (cart[i].id == 3 && cart[i].quantity < 10) {
+                cart[i].price = 5;
+                cart[i].subtotalWithDiscount = "";
             }
 
         }
@@ -207,13 +216,14 @@ function printCart() {
 
         document.getElementById("cart_list").innerHTML += `<tr> <th scope= "row"> ${product.name}</th>
     <td> ${product.price} </td>
-    <td> ${product.quantity} </td> 
+    <td> <button class="btn" onclick="removeFromCart(${product.id})">-</button> ${product.quantity} <button class="btn" onclick="addToCart(${product.id})">+</button></td> 
     <td> ${product.subtotal} </td>
     <td> ${product.subtotalWithDiscount} </td>`
 
     }
 
-    //  Calcular total 
+    //  Total cart
+
     for (let cartPrice of cart) {
 
         if (cartPrice.subtotalWithDiscount == "") {
@@ -225,7 +235,7 @@ function printCart() {
 
     document.getElementById("total_price").innerHTML = finalPriceCart;
 
-
+    //Update quantity
 
 }
 
@@ -247,32 +257,41 @@ function addToCart(id) {
     }
     // 2. Add found product to the cart array or update its quantity in case it has been added previously.
 
-
     if (addCartProduct.quantity == undefined) {
         addCartProduct.quantity = 1;
         addCartProduct.subtotal = addCartProduct.quantity * addCartProduct.price;
         addCartProduct.subtotalWithDiscount = "";
         cart.push(addCartProduct)
-        console.log("pasa");
+
     } else {
         addCartProduct.quantity += 1;
         addCartProduct.subtotal = addCartProduct.quantity * addCartProduct.price;
-        console.log("no pasa");
-
     }
 
-
     document.getElementById("count_product").innerHTML = Number(cart.length);
-
-
-    // return cart
-
+    printCart()
 }
 
 // Exercise 8
 function removeFromCart(id) {
-    // 1. Loop for to the array products to get the item to add to cart
-    // 2. Add found product to the cartList array
+    // 1. Loop for to the array products to get the item to remove from the cart
+    let productToremove = Number(id);
+
+    for (let product of cart) {
+
+        if (productToremove == product.id && product.quantity > 1) {
+            product.quantity--
+            product.subtotal = product.quantity * product.price
+
+        } else {
+            cart = cart.filter(product => product.id != productToremove)
+        }
+    }
+
+    printCart()
+    applyPromotionsCart()
+    
+
 }
 
 function open_modal() {
