@@ -214,9 +214,9 @@ function printCart() {
 
     for (let product of cart) {
 
-        document.getElementById("cart_list").innerHTML += `<tr> <th scope= "row"> ${product.name}</th>
+        document.getElementById("cart_list").innerHTML += `<tr> <th scope= "row"> ${product.name} </th>
     <td> ${product.price} </td>
-    <td> <button class="btn" onclick="removeFromCart(${product.id})">-</button> ${product.quantity} <button class="btn" onclick="addToCart(${product.id})">+</button></td> 
+    <td><button class="btn" onclick = "removeFromCart(${product.id})">-</button> ${product.quantity} <button class="btn" onclick = "addToCart(${product.id})">+</button> </td> 
     <td> ${product.subtotal} </td>
     <td> ${product.subtotalWithDiscount} </td>`
 
@@ -275,15 +275,17 @@ function addToCart(id) {
 // Exercise 8
 function removeFromCart(id) {
     // 1. Loop for to the array products to get the item to remove from the cart
+    
     let productToremove = Number(id);
 
     for (let product of cart) {
 
         if (productToremove == product.id && product.quantity > 1) {
-            product.quantity--
+            product.quantity --;
             product.subtotal = product.quantity * product.price
 
-        } else {
+        } else if (productToremove == product.id && product.quantity == 1)
+        {
             cart = cart.filter(product => product.id != productToremove)
         }
     }
