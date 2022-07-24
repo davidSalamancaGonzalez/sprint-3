@@ -1,9 +1,9 @@
 // If you have time, you can move this variable "products" to a json or js file and load the data in this js. It will look more professional
 var products = [{
         id: 1,
-        name: 'cooking oil',
+        name: 'Eye Mirror',
         price: 10.5,
-        type: 'grocery',
+        type: 'furniture',
         offer: {
             number: 3,
             percent: 20
@@ -11,15 +11,15 @@ var products = [{
     },
     {
         id: 2,
-        name: 'Pasta',
+        name: 'Hanging lamp',
         price: 6.25,
-        type: 'grocery'
+        type: 'furniture'
     },
     {
         id: 3,
-        name: 'Instant cupcake mixture',
+        name: 'Office chair',
         price: 5,
-        type: 'grocery',
+        type: 'furniture',
         offer: {
             number: 10,
             percent: 30
@@ -27,39 +27,39 @@ var products = [{
     },
     {
         id: 4,
-        name: 'All-in-one',
-        price: 260,
-        type: 'beauty'
+        name: 'Green socks',
+        price: 26,
+        type: 'clothing'
     },
     {
         id: 5,
-        name: 'Zero Make-up Kit',
-        price: 20.5,
-        type: 'beauty'
+        name: 'Sneakers',
+        price: 80.5,
+        type: 'clothing'
     },
     {
         id: 6,
-        name: 'Lip Tints',
+        name: 'white socks',
         price: 12.75,
-        type: 'beauty'
+        type: 'clothing'
     },
     {
         id: 7,
-        name: 'Lawn Dress',
-        price: 15,
-        type: 'clothes'
+        name: 'David Bowie',
+        price: 29,
+        type: 'vynils'
     },
     {
         id: 8,
-        name: 'Lawn-Chiffon Combo',
+        name: 'Blink 182',
         price: 19.99,
-        type: 'clothes'
+        type: 'vynils'
     },
     {
         id: 9,
-        name: 'Toddler Frock',
-        price: 9.99,
-        type: 'clothes'
+        name: 'Guns & Roses',
+        price: 19.99,
+        type: 'vynils'
     }
 ]
 
@@ -214,7 +214,8 @@ function printCart() {
 
     for (let product of cart) {
 
-        document.getElementById("cart_list").innerHTML += `<tr> <th scope= "row"> ${product.name} </th>
+        document.getElementById("cart_list").innerHTML += 
+        `<tr> <th scope= "row"> ${product.name} </th>
     <td> ${product.price} </td>
     <td><button class="btn" onclick = "removeFromCart(${product.id})">-</button> ${product.quantity} <button class="btn" onclick = "addToCart(${product.id})">+</button> </td> 
     <td> ${product.subtotal} </td>

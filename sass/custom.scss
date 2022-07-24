@@ -1,7 +1,111 @@
+$nav-tabs-border-color: transparent;
+$h1-font-size: 20rem;
+$h2-font-size: 1.2rem;
+$card-bg: #fefef4;
+$card-border-color: transparent;
+$btn-font-family: 'Roboto Mono', monospace;
+$btn-close-width: 1.3rem;
+$box-shadow: rgba(9, 30, 66, 0.25) 0px 4px 8px -2px, rgba(9, 30, 66, 0.08) 0px 0px 0px 1px;
 @import "../node_modules/bootstrap/scss/bootstrap";
 
 .invalid-feedback {
     /* background-color: red; */
     color:red;
     
+}
+
+body {
+    background-color: #fefef4;
+}
+
+.backgroundModal{
+    background-color: #fefef4;
+    border: 0.2rem solid rgba(0, 0, 0, 0.4);
+}
+
+
+.navbar {
+    background-color: #fefef4;
+}
+
+.headerTitle {
+    margin-top: -3rem;
+}
+
+.headerSubtitle {
+    letter-spacing: 1.6rem;
+    margin-top: -4rem;
+}
+
+.text-block {
+    text-align:justify;
+  }
+
+.titlePage2 {
+    letter-spacing: 1.2rem;
+    color: rgba(0, 0, 0, 0.4);
+    border: 0.2rem solid rgba(0, 0, 0, 0.4);
+    border-radius: 0.3rem;
+    padding: 1.4rem;
+    margin: 0 2.2rem;  
+    font-family: 'Roboto Mono', monospace;
+}
+
+.titlePage2:hover {
+    background-color: rgba(0, 0, 0, 0.4);
+    color: #fefef4;
+    border-color: #fefef4;
+}
+.cardText {
+    margin-left: -1rem;
+    margin-top: -0.5rem;
+}
+
+.butCard {
+    margin-right: -2rem;
+    margin-top: -0.5rem;
+}
+
+.ball1 {
+    animation: ball 5s ;
+}
+
+.ball2 {
+    animation: ball 5s ;
+}
+
+.ball3 {
+    animation: ball 5s i;
+}
+
+.modalTitle {
+    font-family: 'Roboto Mono', monospace;
+}
+
+.titleCheckout {
+    font-size: 8rem;
+    
+}
+
+.payments {
+    font-family: 'Roboto Mono', monospace;
+    border-radius: 1rem;
+    
+}
+
+.payments:hover{
+    background-color: rgba(0, 0, 0, 0.4);
+    color: #fefef4;
+    
+}
+
+.formControl{
+    border-radius: 1rem;
+    font-family: 'Roboto Mono', monospace;
+}
+
+@keyframes ball {
+   from {opacity: 0.1;}
+   to {opacity: 1;}
+  
 }
