@@ -2,26 +2,26 @@
 var products = [{
         id: 1,
         name: 'Eye Mirror',
-        price: 10.5,
+        price: 50,
         type: 'furniture',
         offer: {
-            number: 3,
+            number: 2,
             percent: 20
         }
     },
     {
         id: 2,
         name: 'Hanging lamp',
-        price: 6.25,
+        price: 80.5,
         type: 'furniture'
     },
     {
         id: 3,
         name: 'Office chair',
-        price: 5,
+        price: 250,
         type: 'furniture',
         offer: {
-            number: 10,
+            number: 4,
             percent: 30
         }
     },
@@ -69,7 +69,7 @@ var cartList = [];
 // Improved version of cartList. Cart is an array of products (objects), but each one has a quantity field to define its quantity, so these products are not repeated.
 var cart = [];
 var total = 0;
-
+console.log(cart);
 // Exercise 1
 
 // Hidden ex-8
@@ -176,22 +176,10 @@ function applyPromotionsCart() {
 
         for (let i = 0; i < cart.length; i++) {
 
-            if (cart[i].id == 1 && cart[i].quantity >= 3) {
-                cart[i].price = 10;
-                cart[i].subtotalWithDiscount = cart[i].price * cart[i].quantity;
-            } else if (cart[i].id == 1 && cart[i].quantity <= 2) {
-                cart[i].price = 10.5;
-                cart[i].subtotal =  cart[i].price * cart[i].quantity;
+            if (cart[i].offer != undefined && cart[i].quantity >= cart[i].offer.number) {
+                cart[i].subtotalWithDiscount = cart[i].subtotal - ((cart[i].subtotal * cart[i].offer.percent) / 100);
 
-                cart[i].subtotalWithDiscount = "";
-            } else if (cart[i].id == 3 && cart[i].quantity >= 10) {
-                let price = (5 * 2) / 3;
-                cart[i].price = price;
-                cart[i].price = cart[i].price.toFixed(2)
-                cart[i].subtotalWithDiscount = cart[i].price * cart[i].quantity;
-                cart[i].subtotalWithDiscount = cart[i].subtotalWithDiscount.toFixed(2)
-            } else if (cart[i].id == 3 && cart[i].quantity < 10) {
-                cart[i].price = 5;
+            } else if (cart[i].offer != undefined && cart[i].quantity < cart[i].offer.number) {
                 cart[i].subtotalWithDiscount = "";
             }
 
@@ -214,8 +202,8 @@ function printCart() {
 
     for (let product of cart) {
 
-        document.getElementById("cart_list").innerHTML += 
-        `<tr> <th scope= "row"> ${product.name} </th>
+        document.getElementById("cart_list").innerHTML +=
+            `<tr> <th scope= "row"> ${product.name} </th>
     <td> ${product.price} </td>
     <td><button class="btn" onclick = "removeFromCart(${product.id})">-</button> ${product.quantity} <button class="btn" onclick = "addToCart(${product.id})">+</button> </td> 
     <td> ${product.subtotal} </td>
@@ -276,24 +264,26 @@ function addToCart(id) {
 // Exercise 8
 function removeFromCart(id) {
     // 1. Loop for to the array products to get the item to remove from the cart
-    
+
     let productToremove = Number(id);
 
     for (let product of cart) {
 
         if (productToremove == product.id && product.quantity > 1) {
-            product.quantity --;
+            product.quantity--;
             product.subtotal = product.quantity * product.price
+            console.log("pasa", cart);
 
-        } else if (productToremove == product.id && product.quantity == 1)
-        {
+        } else if (productToremove == product.id && product.quantity == 1) {
+            product.quantity = undefined;
             cart = cart.filter(product => product.id != productToremove)
+            console.log("nopasa", cart);
         }
     }
 
     printCart()
     applyPromotionsCart()
-    
+
 
 }
 

@@ -1,24 +1,26 @@
-$nav-tabs-border-color: transparent;
+$nav-tabs-border-color: black;
 $h1-font-size: 20rem;
 $h2-font-size: 1.2rem;
 $card-bg: #fefef4;
 $card-border-color: transparent;
-$btn-font-family: 'Roboto Mono', monospace;
+$btn-font-family: 'Roboto Mono',
+monospace;
 $btn-close-width: 1.3rem;
-$box-shadow: rgba(9, 30, 66, 0.25) 0px 4px 8px -2px, rgba(9, 30, 66, 0.08) 0px 0px 0px 1px;
+$box-shadow: rgba(9, 30, 66, 0.25) 0px 4px 8px -2px,
+rgba(9, 30, 66, 0.08) 0px 0px 0px 1px;
 @import "../node_modules/bootstrap/scss/bootstrap";
 
 .invalid-feedback {
     /* background-color: red; */
-    color:red;
-    
+    color: red;
+
 }
 
 body {
     background-color: #fefef4;
 }
 
-.backgroundModal{
+.backgroundModal {
     background-color: #fefef4;
     border: 0.2rem solid rgba(0, 0, 0, 0.4);
 }
@@ -27,6 +29,7 @@ body {
 .navbar {
     background-color: #fefef4;
 }
+
 
 .headerTitle {
     margin-top: -3rem;
@@ -38,8 +41,8 @@ body {
 }
 
 .text-block {
-    text-align:justify;
-  }
+    text-align: justify;
+}
 
 .titlePage2 {
     letter-spacing: 1.2rem;
@@ -47,7 +50,7 @@ body {
     border: 0.2rem solid rgba(0, 0, 0, 0.4);
     border-radius: 0.3rem;
     padding: 1.4rem;
-    margin: 0 2.2rem;  
+    margin: 0 2.2rem;
     font-family: 'Roboto Mono', monospace;
 }
 
@@ -56,6 +59,7 @@ body {
     color: #fefef4;
     border-color: #fefef4;
 }
+
 .cardText {
     margin-left: -1rem;
     margin-top: -0.5rem;
@@ -67,11 +71,11 @@ body {
 }
 
 .ball1 {
-    animation: ball 5s ;
+    animation: ball 5s;
 }
 
 .ball2 {
-    animation: ball 5s ;
+    animation: ball 5s;
 }
 
 .ball3 {
@@ -80,32 +84,92 @@ body {
 
 .modalTitle {
     font-family: 'Roboto Mono', monospace;
+    
 }
 
 .titleCheckout {
     font-size: 8rem;
-    
+
 }
 
 .payments {
     font-family: 'Roboto Mono', monospace;
     border-radius: 1rem;
-    
+
 }
 
-.payments:hover{
+.payments:hover {
     background-color: rgba(0, 0, 0, 0.4);
     color: #fefef4;
-    
+
 }
 
-.formControl{
+.formControl {
     border-radius: 1rem;
     font-family: 'Roboto Mono', monospace;
 }
 
+.log:hover {
+    color: rgba(0, 0, 0, 0.4);
+    cursor: pointer; 
+} 
+
 @keyframes ball {
-   from {opacity: 0.1;}
-   to {opacity: 1;}
-  
+    from {
+        opacity: 0.1;
+    }
+
+    to {
+        opacity: 1;
+    }
+
+}
+
+@media (max-width: 992px) {
+    .headerTitle {
+        font-size: 14rem;
+        margin-top: 0rem;
+    }
+    .headerSubtitle {
+        letter-spacing: 1rem;
+        margin-top: -3rem;
+    } 
+}
+
+@media (max-width: 768px) {
+    .headerTitle {
+        font-size: 10rem;
+        margin-top: 0rem;
+    }
+    .headerSubtitle {
+        letter-spacing: 1rem;
+        margin-top: -2rem;
+    }
+    .titlePage2{
+        margin: 0 0rem;
+    }
+
+    .descriptionTop {
+        display: none;
+    }
+
+    .titleCheckout {
+        font-size: 6.5rem;
+    }
+}
+
+
+@media (max-width: 576px) {
+    .headerTitle {
+        font-size: 7rem;
+        margin-top: 0rem;
+    }
+
+    .headerSubtitle {
+        letter-spacing: 1rem;
+        margin-top: -1rem;
+    }
+
+   
+
 }
