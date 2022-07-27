@@ -206,7 +206,7 @@ function printCart() {
             `<tr> <th scope= "row"> ${product.name} </th>
     <td> ${product.price} </td>
     <td><button class="btn" onclick = "removeFromCart(${product.id})">-</button> ${product.quantity} <button class="btn" onclick = "addToCart(${product.id})">+</button> </td> 
-    <td> ${product.subtotal} </td>
+    <td> ${product.subtotal.toFixed(2)} </td>
     <td> ${product.subtotalWithDiscount} </td>`
 
     }
@@ -217,12 +217,14 @@ function printCart() {
 
         if (cartPrice.subtotalWithDiscount == "") {
             finalPriceCart += cartPrice.subtotal
+            
         } else {
             finalPriceCart += Number(cartPrice.subtotalWithDiscount);
+            
         }
     }
 
-    document.getElementById("total_price").innerHTML = finalPriceCart;
+    document.getElementById("total_price").innerHTML = finalPriceCart.toFixed(2);
 
     //Update quantity
 
